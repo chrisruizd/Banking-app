@@ -3,14 +3,14 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse('')
+    return render(request, 'bank/home.html')
 
 def about(request):
-    return HttpResponse('')
+    return render(request, 'bank/about.html')
 
 def login(request):
-    return HttpResponse('')
+    return render(request, )
 
 def signup(request):
-    return HttpResponse('')
+    return render(request, )
 
