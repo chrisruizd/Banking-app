@@ -9,8 +9,8 @@ def about(request):
     return render(request, 'bank/about.html')
 
 def login(request):
-    return render(request, )
+    return render(request, 'bank/login.html')
 
 def signup(request):
-    return render(request, )
+    return render(request, 'bank/signup.html')
 
