@@ -17,4 +17,8 @@ Transfers(transf_id, sender_acc, receip_acc, amount) ->pk:transf_id
 maybe
 Location(ussn, country, city)
 
+<<<<<<< HEAD
 </pre>
+=======
+</pre>
+>>>>>>> d6b52dfa87680158f473c145a3d2e2bbbb3b280c
