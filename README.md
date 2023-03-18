@@ -1,24 +1,15 @@
 # Banking-app
 To put all installed packeges in a file use: pip freeze > filename.txt
 
-<pre>
 
-Github:
-"git add ."
-"git commit -m "Added new feature X"
-"git pull"
 
-Database Schema:
-User(ssn, Fname, Lname, DOB, email, psw, country, city) ->pk:ssn
-Account(acc_num, ussn, balance, spending, transfers) ->pk: acc_num   ussn is unique 
-Transactions(t_id, acc_num, tamount) ->pk: t_id  
-Transfers(transf_id, sender_acc, receip_acc, amount) ->pk:transf_id
 
-maybe
-Location(ussn, country, city)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 </pre>
 =======
 </pre>
 >>>>>>> d6b52dfa87680158f473c145a3d2e2bbbb3b280c
+=======
+>>>>>>> e21e7aef6a8c553f0cb13e7e5e9eb92d235020f3
