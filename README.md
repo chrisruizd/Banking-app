@@ -1,6 +1,8 @@
 # Banking-app
 To put all installed packeges in a file use: pip freeze > filename.txt
 
+<pre>
+
 Github:
 "git add ."
 "git commit -m "Added new feature X"
@@ -14,3 +16,5 @@ Transfers(transf_id, sender_acc, receip_acc, amount) ->pk:transf_id
 
 maybe
 Location(ussn, country, city)
+
+</pre>
