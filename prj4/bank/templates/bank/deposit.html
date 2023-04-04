@@ -1,0 +1,40 @@
+{% extends "bank/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <h1> Deposit </h1>
+    <hr class="divider" />
+    <br/>
+    <div class="content-section">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Deposit</button>
+      </form>
+    
+      <hr>
+    
+      <h3>Accounts</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Account Number</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for account in accounts %}
+            <tr>
+              <td>{{ account.acc_num }}</td>
+              <td>$ {{ account.balance }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+        
+
+    </div>
+
+{% endblock content %}

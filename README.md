@@ -23,8 +23,8 @@ git log --oneline       get list of commits
 Database Schema:
 User(ssn, Fname, Lname, DOB, email, psw, country, city) ->pk:ssn
 Account(acc_num, ussn, balance, spendings) ->pk: acc_num   ussn is unique 
-Transactions(t_id, acc_num, tamount) ->pk: t_id  
-Transfers(transf_id, sender_acc, receip_acc, amount) ->pk:transf_id
+Transactions(t_id, tacc_num, tamount) ->pk: t_id  
+Transfers(transf_id, sender_acc, rece_acc, amount) ->pk:transf_id
 
 maybe
 Location(ussn, country, city)

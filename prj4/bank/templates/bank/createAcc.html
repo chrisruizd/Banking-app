@@ -4,9 +4,9 @@
 
 {% block content %}
 
-    <h1> Sign Up </h1>
+    <h1> Creat New Bank Account </h1>
     <hr class="divider" />
-    
+    <br/>
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
@@ -14,16 +14,11 @@
                 
                 {{ form|crispy }}
             </fieldset>
+            <br/>
             <div class="form-group">
-                <button class="btn btn-outline-secondary" type="submit">Sign Up</button>
+                <button class="btn btn-outline-secondary" type="submit">Create new account</button>
             </div>
         </form>
-        
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already have an account? <a class="ml-2" href="{% url 'bank-login' %}">Log In</a>
-            </small>
-        </div>
 
     </div>
 
