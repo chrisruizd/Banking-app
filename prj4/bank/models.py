@@ -6,6 +6,10 @@ import uuid
 # Create your models here.
 from django.db import models
 
+#this are the banking app database models
+#notice it is using Django pre-built User model, it contains the attributes username and password
+
+#user can only have one profile
 class Profile(models.Model):
     #username = models.CharField(max_length=9, primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -28,7 +32,7 @@ class Profile(models.Model):
         super().save(*args, **kawargs)
 
 
-
+# a profile can have multiple accounts, but an account can only have a single profile
 class Account(models.Model):
     acc_num = models.CharField(max_length=20, primary_key=True)
     a_username = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -43,12 +47,12 @@ class Account(models.Model):
 
 
     
-
+# an account can have multiple transactions, but a transaction can only have a single account related
 class Transactions(models.Model):
     t_id = models.CharField(max_length=20, primary_key=True)
     acc_num = models.ForeignKey(Account, on_delete=models.CASCADE)
     tamount = models.DecimalField(max_digits=12, decimal_places=2)
-    tr_type = models.CharField(max_length=1)
+    tr_type = models.CharField(max_length=1)    #transaction type
     date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -61,6 +65,7 @@ class Transactions(models.Model):
         super().save(*args, **kawargs)
 
 
+# an account can have multiple transfers, a transfer requires receiver and sender accounts
 class Transfers(models.Model):
     transf_id = models.CharField(max_length=20, primary_key=True)
     sender_acc = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender_account')
