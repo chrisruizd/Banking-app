@@ -6,22 +6,19 @@ import uuid
 # Create your models here.
 from django.db import models
 
-#this are the banking app database models
+
 #notice it is using Django pre-built User model, it contains the attributes username and password
 
 #user can only have one profile
 class Profile(models.Model):
-    #username = models.CharField(max_length=9, primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     Fname = models.CharField(max_length=50)
     Lname = models.CharField(max_length=50)
     DOB = models.DateField()
     email = models.EmailField()
-    #psw = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     
-    #need to add a username
     
 
     #this returns how you want the user to be printed
@@ -37,7 +34,6 @@ class Account(models.Model):
     acc_num = models.CharField(max_length=20, primary_key=True)
     a_username = models.ForeignKey(Profile, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits=12, decimal_places=2)
-    #spendings = models.DecimalField(max_digits=12, decimal_places=2, default=0)
 
     def __str__(self):
         return f"{self.acc_num}"

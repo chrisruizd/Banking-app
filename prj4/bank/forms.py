@@ -3,38 +3,11 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from django.forms import widgets
-
-"""
-#not sure if it's saving the input in the db
-class UserRegisterForm(forms.Form):
-    ssn = forms.CharField(max_length=9)
-    Fname = forms.CharField(max_length=50)
-    Lname = forms.CharField(max_length=50)
-    DOB = forms.DateField()
-    email = forms.EmailField()
-    psw = forms.CharField(max_length=50)
-    country = forms.CharField(max_length=50)
-    city = forms.CharField(max_length=50)
-
-    # Define the layout for the form using Crispy Forms
-    helper = FormHelper()
-    helper.form_method = 'post'
-    helper.layout = Layout(
-        'Fname',
-        'Lname',
-        'DOB',
-        'country',
-        'city',
-        'email',
-        'psw',
-        Submit('submit', 'Submit', css_class='btn-primary')
-    )
-"""
-
-from django import forms
 from django.core.exceptions import ValidationError
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
+
+
 
 class UserRegisterForm(UserCreationForm):
     Fname = forms.CharField(max_length=50, label='First name')
@@ -140,18 +113,3 @@ class PerformUserSend(forms.ModelForm):
 
 
         
-"""
-    # Enforce unique constraint on SSN field
-    def valid_ssn(self):
-        ssn = self.cleaned_data.get('username')
-        if User.objects.filter(ssn=ssn).exists():
-            raise ValidationError('This username already exists. Please enter a unique username.')
-        return ssn
-
-    # Add Crispy Form Helper to customize form layout
-    def __init__(self, *args, **kwargs):
-        super(UserRegisterForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'POST'
-        self.helper.add_input(Submit('submit', 'Save', css_class='btn-primary'))
-"""
