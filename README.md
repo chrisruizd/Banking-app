@@ -21,18 +21,23 @@ git log --oneline       get list of commits
 
 
 Database Schema:
-User(ssn, Fname, Lname, DOB, email, psw, country, city) ->pk:ssn
-Account(acc_num, ussn, balance, spendings) ->pk: acc_num   ussn is unique 
-Transactions(t_id, tacc_num, tamount) ->pk: t_id  
+User(username, password)    ->pk:username
+Profile(username, Fname, Lname, DOB, email, country, city) ->fk:username
+Account(acc_num, balance, a_username) ->pk: acc_num    
+Transactions(t_id, tacc_num, tamount, tr_type, date_time) ->pk: t_id  
 Transfers(transf_id, sender_acc, rece_acc, amount) ->pk:transf_id
-
-maybe
-Location(ussn, country, city)
 
 
 Notes:
-need a logged in home page that displays the user and the accounts
-and links to get all the info from that user 
-links to transfer money to another user
-links to pay/withdraw
+need pasw reset functionality 
 
+
+
+Use sqlite:
+py manage.py dbshell
+
+select *
+from bank_account;
+
+select *
+from bank_profile;
