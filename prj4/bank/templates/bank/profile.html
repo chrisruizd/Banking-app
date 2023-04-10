@@ -23,7 +23,6 @@
                             <tr>
                                 <th>Account Number</th>
                                 <th>Balance</th>
-                                <th>Spendings</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,7 +30,6 @@
                             <tr>
                                 <td>{{ account.acc_num }}</td>
                                 <td>$ {{ account.balance }}</td>
-                                <td>$ {{ account.spendings }}</td>
                             </tr>
                             {% empty %}
                             <tr>
@@ -44,6 +42,36 @@
                 </div>
 
                 <h2 class="text-white-75 mb-5">My Transactions</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Transaction Id</th>
+                            <th>Account Number</th>
+                            <th>Amount</th>
+                            <th>Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.t_id }}</td>
+                            <td>{{ transaction.acc_num }}</td>
+                            {% if transaction.tr_type == 'D' %}
+                                <td style="color:green">+$ {{ transaction.tamount }}</td>
+                            {% elif transaction.tr_type == 'W' %}
+                                <td style="color:red">-$ {{ transaction.tamount }}</td>
+                            {% else %}
+                                <td>$ 0.00</td>
+                            {% endif %}
+                            <td>{{ transaction.date_time }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3">You have no transactions.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
             </div>
         </div>
