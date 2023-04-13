@@ -17,9 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
+from django.views.generic.base import RedirectView
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetCompleteView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('bank.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='bank/login.html'), name='bank-login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='bank/logout.html'), name='bank-logout'),
+
+    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='bank/password_reset.html'), name='password_reset'),
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='bank/password_reset_done.html'), name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='bank/password_reset_confirm.html'), name='password_reset_confirm'),
+    #path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='bank/password_reset_complete.html'), name='password_reset_complete'),
+
+    path('password-reset-complete/', RedirectView.as_view(url=reverse_lazy('bank-login'), permanent=False), name='password_reset_complete'),
+    
 ]
