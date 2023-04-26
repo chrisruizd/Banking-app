@@ -37,11 +37,13 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-withdraw' %}">Withdraw</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-transfer' %}">Transfer</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-send' %}">Send</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'bank-contact' %}">Contact</a></li>
                             {% else %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-home' %}">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-login' %}">Log in</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-signup' %}">Sign up</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'bank-about' %}">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'bank-contact' %}">Contact</a></li>
                             {% endif %}
                             
                         </ul>

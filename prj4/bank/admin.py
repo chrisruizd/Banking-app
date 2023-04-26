@@ -6,3 +6,9 @@ admin.site.register(Profile)
 admin.site.register(Account)
 admin.site.register(Transactions)
 admin.site.register(Transfers)
+
+#admin
+#adminpsw
+
+#Lio
+#psw: Password12#

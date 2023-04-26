@@ -6,7 +6,7 @@ from .forms import *
 from django.contrib import messages
 from .models import User
 from django.contrib.auth import authenticate, login, logout
-
+from django.core.mail import send_mail
 
 # Create your views here.
 def home(request):
@@ -14,23 +14,8 @@ def home(request):
 
 def about(request):
     return render(request, 'bank/about.html')
-"""
-def login_user(request):
-    if request.method == "POST":
-        username1 = request.POST.get['username']
-        password = request.POST.get['password']
-        user = authenticate(request, username=username1, psw=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, f'You have been logged in!')
 
-            return redirect('bank-home')
-        else:
-            messages.error(request, f'There was an error')
-            return redirect('bank-login')
-        
-    return render(request, 'bank/login.html')
-"""
+
 def signup(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -56,16 +41,13 @@ def signup(request):
     return render(request, 'bank/signup.html', {'form': form})
 
 
-#def logout_user(request):
-    
-#when I sign up and the profile page is opened it does not detects the user
-#not making the connection btw profile and user
+
 @login_required
 def profile(request):
     user = request.user
     accounts = Account.objects.filter(a_username__user=request.user)
     transactions = Transactions.objects.filter(acc_num__a_username=user.profile).order_by('-date_time')
-    context = {'user': user, 'accounts': accounts, 'transactions': transactions, 'T_FLAG': T_FLAG}
+    context = {'user': user, 'accounts': accounts, 'transactions': transactions}
 
     return render(request, 'bank/profile.html', context)
 
@@ -118,6 +100,18 @@ def deposit(request):
             transaction.acc_num = account
             transaction.save()
 
+            if amount > 10000:
+                message = 'Thank you for your deposit'
+                email = 'theruizfamch35@yahoo.com'
+                name = 'Deposit Alert'
+                send_mail(
+                    name,
+                    message,
+                    'settings.EMAIL_HOST_USER',
+                    [email],
+                    fail_silently=False
+                )
+
             messages.success(request, f'Deposit of {amount} successfully made to account {account_number}.')
             return redirect('bank-profile')
     else:
@@ -163,6 +157,17 @@ def withdraw(request):
             transaction.acc_num = account
             transaction.save()
 
+            if amount > 10000:
+                message = 'You made a withdrawal larger than 10,000'
+                email = 'theruizfamch35@yahoo.com'
+                name = 'Withdrawal Alert'
+                send_mail(
+                    name,
+                    message,
+                    'settings.EMAIL_HOST_USER',
+                    [email],
+                    fail_silently=False
+                )
             messages.success(request, f'Withdraw of {amount} successfully made to account {account_number}.')
             return redirect('bank-profile')
     else:
@@ -170,7 +175,6 @@ def withdraw(request):
     
     return render(request, 'bank/withdraw.html', {'form': form, 'accounts': accounts})
 
-#fields = ['sender_acc', 'receip_acc', 'amount']
 
 
 
@@ -222,6 +226,18 @@ def transfer(request):
             transfer.receip_acc = account_R
             transfer.save()
 
+
+            if amount > 10000:
+                message = 'You made a transfer larger than 10,000'
+                email = 'theruizfamch35@yahoo.com'
+                name = 'Transfer Alert'
+                send_mail(
+                    name,
+                    message,
+                    'settings.EMAIL_HOST_USER',
+                    [email],
+                    fail_silently=False
+                )
             messages.success(request, f'Transfer of {amount} successfully made to account {account_num_rec}.')
             return redirect('bank-profile')
     else:
@@ -294,57 +310,17 @@ def send(request):
 
 
 
-"""
-#need to modify
-@login_required
-def profile(request, user_ssn):
-    user = User.objects.get(ssn=user_ssn)
-    accounts = Account.objects.filter(ussn=user)
-    account_info = []
-    for account in accounts:
-        info = {'acc_num': account.acc_num, 'balance': account.balance, 'spendings': account.spendings}
-        account_info.append(info)
-    context = {'user_ssn': user_ssn, 'account_info': account_info}
-    return render(request, 'profile.html', context)
 
-
-<h1>Accounts for User {{ user_ssn }}</h1>
-<table>
-  <tr>
-    <th>Account Number</th>
-    <th>Balance</th>
-    <th>Spendings</th>
-  </tr>
-  {% for account in account_info %}
-  <tr>
-    <td>{{ account.acc_num }}</td>
-    <td>{{ account.balance }}</td>
-    <td>{{ account.spendings }}</td>
-  </tr>
-  {% endfor %}
-</table>
-
-
-@login_required
-def deposit(request):
-    account = Account.objects.get(a_username=request.user.profile)
+def SendEmail(request):
     if request.method == 'POST':
-        form = PerformDeposit(request.POST)
-        if form.is_valid():
-            # Update the account balance
-            
-            amount = form.cleaned_data['amount']
-            account.balance += amount
-            account.save()
-
-            # Save the transaction
-            Transactions.objects.create(
-                acc_num=account,
-                tamount=amount
-            )
-            
-            return redirect('bank-profile')
-    else:
-        form = PerformDeposit()
-    return render(request, 'bank/deposit.html', {'form': form})
-"""
+        message = request.POST['message']
+        email = 'theruizfamch35@yahoo.com'
+        name = request.POST['name']
+        send_mail(
+            name,
+            message,
+            'settings.EMAIL_HOST_USER',
+            [email],
+            fail_silently=False
+        )
+    return render(request, 'bank/contact.html')

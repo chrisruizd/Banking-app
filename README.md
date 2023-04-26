@@ -28,9 +28,6 @@ Transactions(t_id, tacc_num, tamount, tr_type, date_time) ->pk: t_id
 Transfers(transf_id, sender_acc, rece_acc, amount) ->pk:transf_id
 
 
-Notes:
-need pasw reset functionality 
-
 
 
 Use sqlite:

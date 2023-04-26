@@ -72,9 +72,9 @@
     </div>
     <footer class="footer-container" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="login.html">Log in</a></li>
-          <li class="breadcrumb-item"><a href="signup.html">Sign Up</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'bank-home' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'bank-login' %}">Log in</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'bank-signup' %}">Sign Up</a></li>
           <li class="breadcrumb-item active" aria-current="page">About Us</li>
         </ol>
     </footer>

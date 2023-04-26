@@ -1,0 +1,38 @@
+{% extends "bank/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <h1> Contact Customer Service </h1>
+    <hr class="divider" />
+    
+    <legend> Send your Email</legend>
+    <br/>
+    <br>
+    <div class="content-section">
+        
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    
+                    <input class="form-control" type="text" name="name" placeholder="Title of the email" required>
+                    
+                </div>
+                <br>
+                <br>
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" name="message" placeholder="Message to be delivered" required></textarea>
+                </div>
+                <br>
+                <br>
+
+                <button type="submit" class="btn btn-primary">Send</button>
+
+
+            </form>
+        
+    </div>
+
+
+{% endblock content %}
