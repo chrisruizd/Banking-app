@@ -9,3 +9,6 @@ admin.site.register(Transfers)
 
 #admin
 #adminpsw
+
+#Lio
+#psw: Password12#

@@ -17,4 +17,6 @@ urlpatterns = [
     path('withdraw/', views.withdraw, name='bank-withdraw'),
     path('transfer/', views.transfer, name='bank-transfer'),
     path('send/', views.send, name='bank-send'),
+
+    path('contact/', views.SendEmail, name='bank-contact'),
 ]

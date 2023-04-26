@@ -6,7 +6,7 @@ from .forms import *
 from django.contrib import messages
 from .models import User
 from django.contrib.auth import authenticate, login, logout
-
+from django.core.mail import send_mail
 
 # Create your views here.
 def home(request):
@@ -100,6 +100,18 @@ def deposit(request):
             transaction.acc_num = account
             transaction.save()
 
+            if amount > 10000:
+                message = 'Thank you for your deposit'
+                email = 'theruizfamch35@yahoo.com'
+                name = 'Deposit Alert'
+                send_mail(
+                    name,
+                    message,
+                    'settings.EMAIL_HOST_USER',
+                    [email],
+                    fail_silently=False
+                )
+
             messages.success(request, f'Deposit of {amount} successfully made to account {account_number}.')
             return redirect('bank-profile')
     else:
@@ -145,6 +157,17 @@ def withdraw(request):
             transaction.acc_num = account
             transaction.save()
 
+            if amount > 10000:
+                message = 'You made a withdrawal larger than 10,000'
+                email = 'theruizfamch35@yahoo.com'
+                name = 'Withdrawal Alert'
+                send_mail(
+                    name,
+                    message,
+                    'settings.EMAIL_HOST_USER',
+                    [email],
+                    fail_silently=False
+                )
             messages.success(request, f'Withdraw of {amount} successfully made to account {account_number}.')
             return redirect('bank-profile')
     else:
@@ -203,6 +226,18 @@ def transfer(request):
             transfer.receip_acc = account_R
             transfer.save()
 
+
+            if amount > 10000:
+                message = 'You made a transfer larger than 10,000'
+                email = 'theruizfamch35@yahoo.com'
+                name = 'Transfer Alert'
+                send_mail(
+                    name,
+                    message,
+                    'settings.EMAIL_HOST_USER',
+                    [email],
+                    fail_silently=False
+                )
             messages.success(request, f'Transfer of {amount} successfully made to account {account_num_rec}.')
             return redirect('bank-profile')
     else:
@@ -276,3 +311,16 @@ def send(request):
 
 
 
+def SendEmail(request):
+    if request.method == 'POST':
+        message = request.POST['message']
+        email = 'theruizfamch35@yahoo.com'
+        name = request.POST['name']
+        send_mail(
+            name,
+            message,
+            'settings.EMAIL_HOST_USER',
+            [email],
+            fail_silently=False
+        )
+    return render(request, 'bank/contact.html')
