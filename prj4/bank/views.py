@@ -102,7 +102,7 @@ def deposit(request):
 
             if amount > 10000:
                 message = 'Thank you for your deposit'
-                email = 'theruizfamch35@yahoo.com'
+                email = 'email@yahoo.com'
                 name = 'Deposit Alert'
                 send_mail(
                     name,
@@ -159,7 +159,7 @@ def withdraw(request):
 
             if amount > 10000:
                 message = 'You made a withdrawal larger than 10,000'
-                email = 'theruizfamch35@yahoo.com'
+                email = 'email@yahoo.com'
                 name = 'Withdrawal Alert'
                 send_mail(
                     name,
@@ -229,7 +229,7 @@ def transfer(request):
 
             if amount > 10000:
                 message = 'You made a transfer larger than 10,000'
-                email = 'theruizfamch35@yahoo.com'
+                email = 'email@yahoo.com'
                 name = 'Transfer Alert'
                 send_mail(
                     name,
@@ -314,7 +314,7 @@ def send(request):
 def SendEmail(request):
     if request.method == 'POST':
         message = request.POST['message']
-        email = 'theruizfamch35@yahoo.com'
+        email = 'email@yahoo.com'
         name = request.POST['name']
         send_mail(
             name,
