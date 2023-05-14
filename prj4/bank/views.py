@@ -314,7 +314,7 @@ def send(request):
 def SendEmail(request):
     if request.method == 'POST':
         message = request.POST['message']
-        email = 'email@yahoo.com'
+        email = 'email@yahoo.com'   
         name = request.POST['name']
         send_mail(
             name,
