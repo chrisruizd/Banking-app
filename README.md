@@ -14,7 +14,8 @@ Account(acc_num, balance, a_username) ->pk: acc_num
 Transactions(t_id, tacc_num, tamount, tr_type, date_time) ->pk: t_id  
 Transfers(transf_id, sender_acc, rece_acc, amount) ->pk:transf_id
 
-![ER diagrams](Banking-app/New ER diagram.png)
+[![ER diagrams](Banking-app/thumbnail.png)](Banking-app/New%20ER%20diagram.png)
+
 
 
 Corey Schafer YouTube channel (Django Tutorials) as a resource
