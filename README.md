@@ -3,7 +3,7 @@
 For this app, our team had the idea of replicating a banking application called ‘USF Online Banking’. Our aim for this application is to demonstrate the functionalities of a bank app, but in a unique way that would not only be convenient to students but also would be available to other members outside of the USF community. 
 
 The application is a basic replica of the USF FCU website, however, we hope to mimic the functionalities in a more user-friendly way, especially through our email alerts feature.
-
+[![ER diagrams](Banking-app/thumbnail.png)](Banking-app/New%20ER%20diagram.png)
 
 <pre>
 
